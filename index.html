@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery vincyl</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+</head>
+<style>
+    #GalleryVincyl {
+		display: -ms-flexbox; 
+		display: flex;
+		-ms-flex-wrap: wrap; 
+		flex-wrap: wrap;
+		padding: 0 4px;
+		justify-content: space-around;
+    }
+    .containre {
+		/* -ms-flex: 25%;  */
+		flex: 25%;
+		max-width: 25%;
+		padding: 0 0px;
+		margin : 4px;
+		position: relative;
+        text-decoration: none;
+    }
+    .vincyl {
+        position: absolute;
+        left: 35px;
+        z-index: 0;
+        transition: left 0.3s;
+        transition-timing-function: linear;
+		
+    }
+
+    .content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .containre:hover .vincyl{
+        left: 50px;
+    }
+
+    .content h3 {
+        font-weight: bold;
+        padding: 0;
+        margin: 0;
+        color: black;
+        font-size:large;
+    }
+    .content p {
+        font-weight: 800;
+        color: gray;
+        padding: 0;
+        margin: 0;
+    } 
+	
+	.containre img {
+		margin-top: 0px;
+		vertical-align: middle;
+		width: 100%;
+	}
+	
+    .ct-container-full {
+        visibility: hidden;
+        display: none;
+    }
+
+	@media screen and (max-width: 800px) {
+        .containre {
+            -ms-flex: 25%;
+            flex: 25%;
+            max-width: 25%;
+        }
+	}
+
+	@media screen and (max-width: 600px) {
+	    .containre {
+            -ms-flex: 35%;
+            flex: 35%;
+            max-width: 35%;
+        }
+        .containre:hover .vincyl{
+            left: 45px;
+        }
+	}
+</style>
+<body>
+    <div id="GalleryVincyl"></div>    
+</body>
+<script>
+    let column1 = {
+        "items1" : {
+            "name" : "Fatima TACHTOUKT",
+            "type" : "Main Stage",
+            "img" : "./Images/artist-img-1.jpg",
+            "mt" : "20px",
+            "link" : "#"
+        },
+        "items2" : {
+            "name" : "Said OUTAJAJT",
+            "type" : "Main Stage",
+            "img" : "./Images/artist-img-2.jpg",
+            "mt" : "80px",
+            "link" : "#"
+        },
+        "items3" : {
+            "name" : "Lahoucine ELBAZ",
+            "type" : "Main Stage",
+            "img" : "./Images/artist-img-3.jpg",
+            "mt" : "0px",
+            "link" : "#"
+        }
+    }
+	let column2 = {
+		"items4" : {
+            "name" : "Ahmed AMAYNOU",
+            "type" : "Main Stage",
+            "img" : "./Images/artist-img-4.jpg",
+            "mt" : "20px",
+            "link" : "#"
+        },
+        "items5" : {
+            "name" : "Hajar TAFOUKT",
+            "type" : "Main Stage",
+            "img" : "./Images/artist-img-5.jpg",
+            "mt" : "80px",
+            "link" : "#"
+        }
+	}
+
+    function generateGallery(items) {
+        const main = document.getElementById('GalleryVincyl');
+        for (let i in items) {
+            if(items.hasOwnProperty(i)) {
+                const item = items[i]
+
+                const itemDiv = document.createElement('a');
+                itemDiv.className = 'containre';
+                itemDiv.href = item.link
+                itemDiv.style.marginTop = item.mt
+
+                itemDiv.innerHTML = `
+                    <img
+                        src="./Images/vincyl.webp"
+                        alt="img1"
+                        class="vincyl"
+                    />
+                    <div class="content">
+                        <img
+                            src=${item.img}
+                            alt=${item.name}
+                        />
+                        <p>${item.type}</p>
+                        <h3>${item.name}</h3>
+                    </div>
+                `
+                main.appendChild(itemDiv);
+            }
+
+        }
+    }
+    generateGallery(column1);
+	generateGallery(column2);
+</script>
+</html>
